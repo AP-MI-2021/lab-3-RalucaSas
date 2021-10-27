@@ -173,5 +173,5 @@ def main():
         else:
             print('Optiune invalida, reincearca!')
 
-if __name_ == '_main_':
+if __name__ == '_main_':
   main()
