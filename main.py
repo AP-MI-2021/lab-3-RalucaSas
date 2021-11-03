@@ -105,10 +105,11 @@ def verif_div_k(numere,k):
     :param numere: lista de nr. intregi
     :return: True, daca toate nr. din l sunt divizibile cu k sau False, in caz contrar
     '''
+    max = None
     for x in numere:
-        if x % k != 0:
-            return False
-    return True
+        if x % k == 0 and (max is None or x > max):
+            max = x
+    return max
 
 def testGet_longest_div_k():
     assert verif_div_k([],2) is True
@@ -140,17 +141,15 @@ def read_list():
 
 
 
-def print_meniu():
-    print("1. Citire lista")
-    print("2. Determinare secventa maxima de numere neprime")
-    print("3. Determinare secventa maxima de numere a caror medie nu depasesc o valoare data")
-    print("4. Toate numerele sunt divizibile cu k")
-    print("x. Iesire")
 
 def main():
     numere=[]
     while True:
-        print_meniu()
+        print("1. Citire lista")
+        print("2. Determinare secventa maxima de numere neprime")
+        print("3. Determinare secventa maxima de numere a caror medie nu depasesc o valoare data")
+        print("4. Toate numerele sunt divizibile cu k")
+        print("x. Iesire")
         option = input('Alegeti o optiune: ')
         if option == '1':
             numere = read_list()
@@ -163,9 +162,9 @@ def main():
             result = get_longest_average_below(numere,val)
             print('Cea mai lunga secventa de numerele a caror medie nu depaseste valoarea data  este: ')
             print(result)
-        elif option == '4':
+        elif option == '4':#asta nu merge
             k = int(input("Dati un numar divizibil cu k:"))
-            result = get_longest_div_k(numere,k)
+            result = verif_div_k(numere,k)
             print('Cea mai lunga subsecventa este: ')
             print(result)
         elif option == 'x':
@@ -173,5 +172,5 @@ def main():
         else:
             print('Optiune invalida, reincearca!')
 
-if __name__ == '_main_':
+if __name__ == '__main__':
   main()
